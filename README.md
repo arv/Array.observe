@@ -1,6 +1,6 @@
 * Array.observe()
 * Object.observe(obj, callback, filterObj)
-* [[PUT]]
+* [[Put]] (both length and indexed properties)
 * Pop
 * Push
 * Reverse
