@@ -191,6 +191,24 @@ When the abstract operation CreateChangeRecord is called with the arguments: typ
 1. Return changeRecord.
 
 
+### [[CreateSpliceRecord]]
+There is now an abstract operation [[CreateSpliceRecord]]:
+
+?.??.?? [[CreateSpliceRecord]] \(object, index, removed, addedCount)
+
+When the abstract operation CreateSpliceRecord is called with the arguments: object, index, removed and addedCount, the following steps are taken:
+
+1. Let changeRecord be the result of the abstraction operation ObjectCreate (15.2).
+1. Call the [[DefineOwnProperty]] internal method of changeRecord with arguments “type”, Property Descriptor {[[Value]]: "splice", [[Writable]]: false, [[Enumerable]]: true, [[Configurable]]: false}, and false.
+1. Call the [[DefineOwnProperty]] internal method of changeRecord with arguments “object”, Property Descriptor {[[Value]]: object, [[Writable]]: false, [[Enumerable]]: true, [[Configurable]]: false}, and false.
+1. Call the [[DefineOwnProperty]] internal method of changeRecord with arguments “index”, Property Descriptor {[[Value]]: index, [[Writable]]: false, [[Enumerable]]: true, [[Configurable]]: false}, and false.
+2. Let frozenRemoved be the result of calling Object.freeze(removed)
+1. Call the [[DefineOwnProperty]] internal method of changeRecord with arguments “removed”, Property Descriptor {[[Value]]: frozenRemoved, [[Writable]]: false, [[Enumerable]]: true, [[Configurable]]: false}, and false.
+1. Call the [[DefineOwnProperty]] internal method of changeRecord with arguments “addedCount”, Property Descriptor {[[Value]]: addCount, [[Writable]]: false, [[Enumerable]]: true, [[Configurable]]: false}, and false.
+1. Set the [[Extensible]] internal property of changeRecord to false.
+1. Return changeRecord.
+
+
 ## Modifications to existing internal algorithms
 
 ### [[DefineOwnProperty]]
